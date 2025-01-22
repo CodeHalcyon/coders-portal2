@@ -16,7 +16,6 @@ const EventCard = () => {
                     }
                 });
                 setArticles(response.data.articles);
-                console.log(response);
             } catch (error) {
                 setError(error);
             } finally {
@@ -27,26 +26,24 @@ const EventCard = () => {
         fetchData();
     }, []);
 
-    if (loading) return <p className='w-1/2 text-4xl m-auto text-center'>Loading...</p>;
-    if (error) return <div>Error: {error.message}</div>;
+    if (loading) return <p className='text-2xl text-center text-gray-600'>Loading...</p>;
+    if (error) return <div className='text-center text-red-500'>Error: {error.message}</div>;
 
     return (
-        <div className='flex flex-wrap gap-2'>
+        <div className='grid gap-6 p-6 mt-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {articles
                 .filter(article => article.title !== "[Removed]")
                 .map((article, index) => (
-                    <div key={index} className='border-2 w-1/2 m-auto flex flex-col p-6 gap-9 my-4'>
-                        <div>
-                            <img className='w-3/4' src={article.urlToImage} alt={article.title} />
+                    <div key={index} className='overflow-hidden border border-gray-300 rounded-lg shadow-lg'>
+                        <img loading='lazy' className='object-cover w-full h-64' src={article.urlToImage} alt={article.title} />
+                        <div className='p-4'>
+                            <h3 className='text-xl font-semibold text-gray-800'>{article.title}</h3>
+                            <p className='my-2 text-sm text-gray-500'>{article.author || "Unknown Author"}</p>
+                            <p className='text-sm text-gray-700'>{article.description}</p>
                         </div>
-                        <div>
-                            <div className='font-bold text-3xl'>{article.title}</div>
-                            <div className='font-extralight my-3'>Author: {article.author}</div>
-                            <div>{article.description}</div>
-                        </div>
-                        <div>
-                            <a href={article.url} className='bg-green-400 p-5 font-bold text-green-800 rounded-3xl' target='_blank' rel='noopener noreferrer'>
-                                Register Here
+                        <div className='p-4'>
+                            <a href={article.url} className='block py-2 font-semibold text-center text-white transition-all bg-black rounded-full hover:bg-green-600' target='_blank' rel='noopener noreferrer'>
+                                Read More
                             </a>
                         </div>
                     </div>

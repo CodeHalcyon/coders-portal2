@@ -104,6 +104,17 @@ const Events = () => {
         "registration_fee": "400",
         "description": "A conference on the latest trends in educational technology.",
         "organiser_name": "EdTech Hyderabad"
+      },
+      {
+        "name": "Technovanza",
+        "venue": "Mallareddy,Hyderabad ",
+        "time": "10:00 AM",
+        "date": "10-07-2024",
+        "registration_link": "https://example.com/technovanza",
+        "registration_fee": "500",
+        "description": "A conference on the latest machine learning technology.",
+        "organiser_name": "Tech Hyderabad"
+
       }
     ]
   }
@@ -143,37 +154,45 @@ const Events = () => {
   };
   const sortedEvents = sortType === 'registration_fee' ? sortByRegistrationFee() : sortByDate();
   return (
-    <div>
-      <table className='table-auto bg-black text-white'>
-        <thead>
+    <div className="p-4 overflow-x-auto">
+      <table className="min-w-full border border-gray-300">
+        <thead className="bg-white">
           <tr>
-            <th className='p-3 w-fit text-sm'>Event Name</th>
-            <th className='p-3 w-fit text-sm'>Event Venue</th>
-            <th className='p-3 w-fit text-sm'>Start Time</th>
-            <th className='p-3 w-fit text-sm'>Date</th>
-            <th className='p-3 w-fit text-sm'>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Event Name</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Event Venue</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Start Time</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Date</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">
               Registration Fee
-              <button onClick={toggleSortOrder}>
+              <button onClick={toggleSortOrder} className="ml-2 text-xs text-gray-500">
                 {sortOrder === 'asc' ? '▲' : '▼'}
               </button>
             </th>
-            <th className='p-3 w-fit text-sm'>Event Detail</th>
-            <th className='p-3 w-fit text-sm'>Organizer's Name</th>
-            <th className='p-3 w-fit text-sm'>Registration Link</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Event Detail</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Organizer's Name</th>
+            <th className="p-3 text-sm font-medium text-left text-gray-900 border-b border-gray-300">Registration Link</th>
           </tr>
         </thead>
         <tbody>
           {sortedEvents.map((event, index) => (
-            <tr key={index} className='hover:font-bold transition-all'>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.name}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.venue}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.time}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.date}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.registration_fee}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.description}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>{event.organiser_name}</td>
-              <td className='p-3 w-fit  ease-in  font-light text-sm'>
-                <a className='hover:text-green-400 font-light text-sm' href={event.registration_link} target='_blank' rel='noopener noreferrer'>
+            <tr
+              key={index}
+              className="transition-all duration-200 hover:bg-gray-100"
+            >
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.name}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.venue}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.time}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.date}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.registration_fee}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.description}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">{event.organiser_name}</td>
+              <td className="p-3 text-sm text-gray-800 border-b border-gray-200">
+                <a
+                  className="text-blue-600 hover:text-blue-800"
+                  href={event.registration_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Register Here
                 </a>
               </td>
@@ -182,6 +201,8 @@ const Events = () => {
         </tbody>
       </table>
     </div>
+
+
   );
 }
 
