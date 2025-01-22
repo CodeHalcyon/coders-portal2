@@ -6,7 +6,7 @@ const CommunityCard = (props) => {
       <div className="mb-4 overflow-hidden rounded-lg">
         <img
           className="object-cover w-full h-56 transition-all duration-500 ease-in-out transform rounded-lg hover:scale-110"
-          src={props.image || "../../public/images/OMEN_PortalWP_04.jpg"} // Fallback image if no prop is provided
+          src={props.image} // Fallback image if no prop is provided
           alt="Community"
         />
       </div>
